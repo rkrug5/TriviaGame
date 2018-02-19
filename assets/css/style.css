@@ -1,15 +1,21 @@
-#mainbody {
-
+.jumbotron {
+background-color: #b380ff;
 }
 
-.quizform {
+.questionspace {
 
 	height: 700px;
-	
+	background-color: aliceblue;
 	
 }
 
 body {
 	background-image: url("../images/argyle2.png");
 	
+}
+
+.timeleft {
+	background-color: blue;
+	color: white;
+	margin: 0px 0px 0px 20px;
 }

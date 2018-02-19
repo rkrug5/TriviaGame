@@ -24,11 +24,15 @@
 
 		<!-- Jumbotron with Title -->
 		<div class="jumbotron">
+			<div class="col-sm-3">
+				<img src="assets/images/triviallogo.jpg" />
+			</div>
 			<h1 class="text-center">
 				<strong>Another Trivial Pursuit...</strong>
 			</h1>
-			<h4 class="text-center"></h4>
-			<hr>
+
+			<!--	<h4 class="text-center"></h4>
+			<hr> -->
 			<!-- <div class="text-center">
 				<button class="btn btn-warning btn-xs theme-button">
 					<span class="glyphicon glyphicon-music"></span> Play Theme!</button>
@@ -37,17 +41,32 @@
 		</div>
 		<!-- will update this hopefully with a jeopardy or similar theme song -->
 
-		<div class="row quizForm" id="mainbody">
+		<div class="row quizform" id="mainbody">
+
+			<div class="col-sm-9 questionspace">
 
 
 
+				<h1>JavaScript is a(n) ______ language.</h1>
+				<br>
+				<form>
+					<input type="radio" name="choice" value="Scripting"> Scripting
+					<input type="radio" name="choice" value="Programming"> Programming
+					<input type="radio" name="choice" value="Application"> Application
+					<input type="radio" name="choice" value="None of These"> None of These
+				</form>
+				<br>
+				<button onclick="submitAnswer()">Submit Answer</button>
+			</div>
+			<div class="col-sm-2 timeleft">
+				<p id="timer">
+
+
+				</p>
 
 
 
-
-
-
-
+			</div>
 
 
 
@@ -59,17 +78,48 @@
 
 
 
-
-
-
-
-
-
-
-
 	</div>
 
 
+
+
+	<script type="text/javascript">
+
+		var timerRunning = false;
+
+
+		//my timer object
+		var timer = {
+
+			timeLeft: 90,
+
+
+			runTimer: function () {
+
+				if (!timerRunning) {
+					intervalId = setInterval(timer.count, 1000);
+				}
+			},
+
+			count: function () {
+
+				//   decrease time by 1, remember we cant use "this" here.
+				timer.timeLeft--;
+				document.getElementById("timer").innerHTML = "Seconds Left: " + timer.timeLeft;
+				console.log(timer.timeLeft);
+				if (timer.timeLeft === 0) {
+					alert("Out of Time!");
+				}
+			}
+
+		}
+
+		timer.runTimer();
+
+
+
+
+	</script>
 
 
 
