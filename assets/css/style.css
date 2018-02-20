@@ -5,17 +5,59 @@ background-color: #b380ff;
 .questionspace {
 
 	height: 700px;
-	background-color: aliceblue;
+	background-color: #b380ff;
 	
 }
 
 body {
-	background-image: url("../images/argyle2.png");
-	
+	/* background-image: url("../images/argyle2.png"); */
+	background-color: #b380ff;
 }
 
 .timeleft {
-	background-color: blue;
+	background-color: #b380ff;
 	color: white;
 	margin: 0px 0px 0px 20px;
+}
+
+#instructions {
+
+	text-align: center;
+	font-size: 40px;
+}
+
+#startbtn {
+	background-color: #4CAF50; 
+	border: none;
+	color: white;
+	padding: 14px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+#tryagainbtn {
+	background-color: rgb(218, 10, 10); 
+	border: none;
+	color: white;
+	padding: 14px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+#timer {
+	font-size: 40px;
+}
+
+#results {
+	border-radius: 25px;
+	height: 300px;
+	/* width: 75%; */
+	background-color: white;
+	color:black;
+	font-size: 60px;
+	text-align: center;
 }

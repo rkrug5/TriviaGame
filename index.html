@@ -20,7 +20,12 @@
 
 <body>
 
+
+
+
 	<div class="container">
+
+
 
 		<!-- Jumbotron with Title -->
 		<div class="jumbotron">
@@ -41,32 +46,25 @@
 		</div>
 		<!-- will update this hopefully with a jeopardy or similar theme song -->
 
-		<div class="row quizform" id="mainbody">
-
-			<div class="col-sm-9 questionspace">
 
 
+		<div class="row" id="startbutton">
 
-				<h1>JavaScript is a(n) ______ language.</h1>
-				<br>
-				<form>
-					<input type="radio" name="choice" value="Scripting"> Scripting
-					<input type="radio" name="choice" value="Programming"> Programming
-					<input type="radio" name="choice" value="Application"> Application
-					<input type="radio" name="choice" value="None of These"> None of These
-				</form>
-				<br>
-				<button onclick="submitAnswer()">Submit Answer</button>
-			</div>
-			<div class="col-sm-2 timeleft">
-				<p id="timer">
+			<div class="col-sm-6">
 
-
+				<p id="instructions">Please press the start button to begin a short timed quiz.
 				</p>
 
+			</div>
+
+			<button type="button" id="startbtn" onclick="startquiz()">Start Quiz!</button>
+
+			<div class="col-sm-6">
 
 
 			</div>
+
+
 
 
 
@@ -78,6 +76,55 @@
 
 
 
+
+
+
+
+
+		<div class="row quizform" id="mainbody">
+
+			<div class="col-sm-9 questionspace">
+
+
+
+				<h1>JavaScript is a(n) ______ language.</h1>
+				<br>
+				<form>
+					<input type="radio" name="choice" value="Useless">Useless
+					<input type="radio" name="choice" value="Scripting">Scripting
+					<input type="radio" name="choice" value="Romance">Romance
+					<input type="radio" name="choice" value="None of These"> None of These
+				</form>
+				<br>
+				<button onclick="submitAnswers()">Submit Answer</button>
+			</div>
+
+
+			<div class="col-sm-2 timeleft">
+				<p id="timer">
+
+				</p>
+
+			</div>
+
+
+		</div>
+
+		<div class="row" id="results">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<p>Results:</p>
+
+
+					<!-- <button type="button" id="tryagainbtn" onclick="backtostart()">Try Again!</button> -->
+				</div>
+			</div>
+			<div class="row">
+				<button type="button" id="tryagainbtn" onclick="backtostart()">Try Again!</button>
+			</div>
+		</div>
+
+
 	</div>
 
 
@@ -86,12 +133,12 @@
 	<script type="text/javascript">
 
 		var timerRunning = false;
-
+		var timeLeft
 
 		//my timer object
 		var timer = {
 
-			timeLeft: 90,
+			timeLeft: 10,
 
 
 			runTimer: function () {
@@ -109,14 +156,40 @@
 				console.log(timer.timeLeft);
 				if (timer.timeLeft === 0) {
 					alert("Out of Time!");
+					clearInterval(intervalId);
+					$("#mainbody").hide();
+					$("#results").show();
 				}
 			}
 
 		}
 
-		timer.runTimer();
+		// timer.runTimer();
+
+		$("#mainbody").hide();
+		$("#results").hide();
 
 
+
+		function startquiz() {
+			$("#startbutton").hide();
+			$("#mainbody").show();
+			timer.runTimer();
+			// if (timer.timeLeft === 0) {
+			// alert("Time's Up!");
+
+
+			// }
+		};
+
+		function backtostart() {
+			$("#mainbody").hide();
+			$("#results").hide();
+			$("#startbutton").show();
+
+		}
+
+		function submitAnswers() { }
 
 
 	</script>
