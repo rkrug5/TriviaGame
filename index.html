@@ -57,75 +57,67 @@
 
 			</div>
 
-			<button type="button" id="startbtn" onclick="startquiz()">Start Quiz!</button>
-
+			<!-- for now i will just keep it as start quiz, but i eventually want to add additional categories -->
 			<div class="col-sm-6">
 
+				<button type="button" id="startbtn" onclick="startquiz()">Start Quiz!</button>
+				<!-- <button type="button" id="startbtn" onclick="startquiz()">Start Quiz!</button> -->
+				<!-- <button type="button" id="startbtn" onclick="startquiz()">Start Quiz!</button> -->
+
 
 			</div>
-
-
-
-
-
-
 
 		</div>
 
-
-
-
-
-
-
-
-
-
-		<div class="row quizform" id="mainbody">
-
-			<div class="col-sm-9 questionspace">
-
-
-
-				<h1>JavaScript is a(n) ______ language.</h1>
-				<br>
-				<form>
-					<input type="radio" name="choice" value="Useless">Useless
-					<input type="radio" name="choice" value="Scripting">Scripting
-					<input type="radio" name="choice" value="Romance">Romance
-					<input type="radio" name="choice" value="None of These"> None of These
-				</form>
-				<br>
-				<button onclick="submitAnswers()">Submit Answer</button>
-			</div>
-
-
-			<div class="col-sm-2 timeleft">
-				<p id="timer">
-
-				</p>
-
-			</div>
-
-
-		</div>
-
-		<div class="row" id="results">
-			<div class="row">
-				<div class="col-sm-8 col-sm-offset-2">
-					<p>Results:</p>
-
-
-					<!-- <button type="button" id="tryagainbtn" onclick="backtostart()">Try Again!</button> -->
-				</div>
-			</div>
-			<div class="row">
-				<button type="button" id="tryagainbtn" onclick="backtostart()">Try Again!</button>
-			</div>
-		</div>
 
 
 	</div>
+
+
+	<div class="row quizform" id="mainbody">
+
+		<div class="col-sm-12 questionspace">
+
+			<p id="timer"></p>
+
+			<h1 id="question"></h1>
+			<br>
+			<div class="row styledquiz" id="countdown">
+
+				<div class="col-sm-4 col-sm-offset-4">
+
+					<div class="row solution" id="answer1"></div>
+					<div class="row solution" id="answer2"></div>
+					<div class="row solution" id="answer3"></div>
+					<div class="row solution" id="answer4"></div>
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+
+	<div class="row" id="results">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2" id="results2">
+				<p id="results3">Results:</p>
+
+
+				<!-- <button type="button" id="tryagainbtn" onclick="backtostart()">Try Again!</button> -->
+			</div>
+		</div>
+		<div class="row">
+			<button type="button" id="tryagainbtn" onclick="backtostart()">Try Again!</button>
+		</div>
+	</div>
+
+
+
 
 
 
@@ -152,19 +144,26 @@
 
 				//   decrease time by 1, remember we cant use "this" here.
 				timer.timeLeft--;
-				document.getElementById("timer").innerHTML = "Seconds Left: " + timer.timeLeft;
+				document.getElementById("timer").innerHTML = "Time Remaining: " + timer.timeLeft + " Seconds";
 				console.log(timer.timeLeft);
 				if (timer.timeLeft === 0) {
-					alert("Out of Time!");
+					// alert("Out of Time!");
 					clearInterval(intervalId);
 					$("#mainbody").hide();
 					$("#results").show();
+
 				}
 			}
 
 		}
 
-		// timer.runTimer();
+
+
+
+
+
+
+
 
 		$("#mainbody").hide();
 		$("#results").hide();
@@ -175,21 +174,47 @@
 			$("#startbutton").hide();
 			$("#mainbody").show();
 			timer.runTimer();
-			// if (timer.timeLeft === 0) {
-			// alert("Time's Up!");
+			renderQuestion();
 
-
-			// }
 		};
 
 		function backtostart() {
 			$("#mainbody").hide();
 			$("#results").hide();
 			$("#startbutton").show();
+			timer.timeLeft = 10;
 
 		}
 
+		function renderQuestion() {
+
+			$("#question").text = quizArray.q1;
+			$("#answer1").text = quizArray.s1[0];
+			$("#answer2").innerHTML = quizArray.s2[0];
+			$("#answer3").innerHTML = quizArray.s3[0];
+			$("#answer4").innerHTML = quizArray.s4[0];
+
+		}
+
+		// this function will check the answers. i think i can do it by making an array of "correct values"
+		//then, compare the array of their answers to it.  for every match (numberCorrect +1) 
+		//for every wrong answer (element not in array = -1) (numberIncorrect +1)
 		function submitAnswers() { }
+
+
+		// trying to input/load my questions and answers as an object so i can make cleaner, reusable code
+		var quizArray = {
+			q1: "Which of these is not a noble gas?",
+			s1: ["Hydrogen", true],
+			s2: ["Helium", false],
+			s3: ["Neon", false],
+			s4: ["Radon", false],
+		}
+
+
+
+
+
 
 
 	</script>
