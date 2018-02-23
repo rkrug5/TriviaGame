@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TriviaGame!</title>
 
 
@@ -126,11 +127,12 @@
 		var score = 0;
 		var timerRunning = false;
 		var timeLeft
+		var questionTime
 
 
 
 		//		$("#mainbody").hide();
-		// $("#results").hide();
+		// 		$("#results").hide();
 		//		$("#right").hide();
 		//		$("#wrong").hide(); 
 
@@ -140,33 +142,49 @@
 		function startquiz() {
 
 
-			for (var i = 0; i < quizArray.length; i++) {
-
-				//hide start button
-				$("#startbtn").hide();
-				$("#right").hide();
-				$("#wrong").hide();
-
-				//render question and show quizform
-				$("#mainbody").show();
-
-				$("#question").text(quizArray[i].q);
-				$("#answer1").text(quizArray[i].a[0]);
-				$("#answer2").text(quizArray[i].b[0]);
-				$("#answer3").text(quizArray[i].c[0]);
-				$("#answer4").text(quizArray[i].d[0]);
-
-				//show and run timer
-				timer.timeLeft = 30;
-				$("#timer").text("Time Remaining: " + timer.timeLeft + " Seconds");
-				timer.runTimer();
+			//hide start button
+			$("#startbtn").hide();
+			$("#right").hide();
+			$("#wrong").hide();
 
 
 
+			//render question and show quizform
+			$("#mainbody").show();
 
-			}
+			//show and run timer
+			timer.timeLeft = 10;
+			$("#timer").text("Time Remaining: " + timer.timeLeft + " Seconds");
+			timer.runTimer();
+
+			var i = 0;
+
+			// renderQuestion();
+			$("#question").text(quizArray[i].q);
+			$("#answer1").text(quizArray[i].a[0]);
+			$("#answer2").text(quizArray[i].b[0]);
+			$("#answer3").text(quizArray[i].c[0]);
+			$("#answer4").text(quizArray[i].d[0]);
+
+
+
+			// set conditions if timer = 0 or they click an answer alert right or wrong
+			// if (timer.timeLeft === 0) {
+			// $("#mainbody").hide();
+			// $("#wrong").show();
+			// }
+
+
+
+
+
+
+
+
+
+
+		}
 		};
-
 
 
 
@@ -175,7 +193,7 @@
 		//my timer object
 		var timer = {
 
-			timeLeft: 10,
+			// timeLeft: 10,
 
 
 			runTimer: function () {
@@ -193,21 +211,26 @@
 				$("#timer").text("Time Remaining: " + timer.timeLeft + " Seconds");
 
 				console.log(timer.timeLeft);
-				// if (timer.timeLeft === 0) {
-				// alert("Out of Time!");
-				// clearInterval(intervalId);
-				// $("#mainbody").hide();
-				// $("#results").show();
-				// $("#score").text("You Answered " + score + " Questions Correctly");
-				// $("#right").hide();
-				// $("#wrong").hide();
 
+				if (timer.timeLeft === 0) {
+
+
+
+
+
+					// alert("Out of Time!");
+					clearInterval(intervalId);
+					$("#mainbody").hide();
+					$("#results").show();
+					$("#score").text("You Answered " + score + " Questions Correctly");
+					// $("#right").hide();
+					// $("#wrong").show().delay(24000).hide();
+					// return;
+
+				}
 			}
+
 		}
-
-
-
-
 
 
 
@@ -222,36 +245,51 @@
 			$("#mainbody").hide();
 			$("#results").hide();
 			$("#startbutton").show();
-			timer.timeLeft = 10;
+			$("#right").hide();
+			$("#wrong").hide();
+
+			// timer.timeLeft = 10;
 
 		}
 
 		function renderQuestion() {
 
-			// $("#question").text(quizArray[0].q1);
-			// $("#answer1").text(quizArray[0].a1[0]);
-			// $("#answer2").text(quizArray[0].b1[0]);
-			// $("#answer3").text(quizArray[0].c1[0]);
-			// $("#answer4").text(quizArray[0].d1[0]);
+			// $("#question").text(quizArray[i].q1);
+			// $("#answer1").text(quizArray[i].a1[0]);
+			// $("#answer2").text(quizArray[i].b1[0]);
+			// $("#answer3").text(quizArray[i].c1[0]);
+			// $("#answer4").text(quizArray[i].d1[0]);
 
 
 		}
 
+		function right() {
+			// alert("correct");
+			score++;
+			$("#mainbody").hide();
+			$("#right").show();
+		}
 
+		function wrong() {
+			$("#mainbody").hide();
+			$("#wrong").show();
+		}
 
 
 		function checkSolution1() {
 			if (quizArray[0].a[1] == true) {
 				// alert("correct");
-				score++;
-				$("#mainbody").hide();
-				$("#right").show();
+				// score++;
+				// $("#mainbody").hide();
+				// $("#right").show();
+				right();
 			}
 
 			if (quizArray[0].a[1] == false) {
 				// alert("incorrect");
-				$("#mainbody").hide();
-				$("#wrong").show();
+				// $("#mainbody").hide();
+				// $("#wrong").show();
+				wrong();
 			}
 
 		}

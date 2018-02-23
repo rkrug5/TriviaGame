@@ -72,7 +72,7 @@ color: white;
 
 
 .solution {
-height:50px;
+height: 60px;
 }
 
 
@@ -118,15 +118,19 @@ height:50px;
 }
 
 #results2 {
-	margin-bottom: 100px;
-	color:black;
+	/* margin-bottom: 100px; */
+	/* color:black; */
 }
 
 #results3 {
-	color:black;
+	/* color:black; */
 }
 
 #score {
+	font-size: 40px;
+}
+
+#incorrect {
 	font-size: 20px;
 }
 
@@ -149,6 +153,3 @@ height:50px;
 	
 }
 
-#rightwrongindicator {
-	height: 100px;
-}
